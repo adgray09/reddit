@@ -1,6 +1,14 @@
-const Post = require("../models/posts");
+const Post = require("../models/post");
+
 
 module.exports = (app) => {
+  Post.find({})
+  .then(posts => {
+    res.render("posts-index", { posts });
+  })
+  .catch(err => {
+    console.log(err.message);
+  });
 
   // CREATE
   app.post('/posts/new', (req, res) => {
@@ -10,8 +18,10 @@ module.exports = (app) => {
     // SAVE INSTANCE OF POST MODEL TO DB
     post.save((err, post) => {
       // REDIRECT TO THE ROOT
+      console.log(err)
       return res.redirect(`/`);
     })
   });
 
 };
+
