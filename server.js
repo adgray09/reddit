@@ -17,6 +17,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(expressValidator());
 
 require('./controllers/posts.js')(app);
+require('./controllers/comments.js')(app);
 require('./data/reddit-db');
 
 
