@@ -16,10 +16,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Add after body parser initialization!
 app.use(expressValidator());
 
-// routes
-app.get('/', (req, res) => res.render('posts-index'))
-app.get('/posts/new', (req,res) => res.render('post-new'))
-
 require('./controllers/posts.js')(app);
 require('./data/reddit-db');
 
