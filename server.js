@@ -1,6 +1,9 @@
+require('dotenv').config();
 const http = require('http');
 const hostname = '127.0.0.1';
 const port = 3000;
+var cookieParser = require('cookie-parser');
+const jwt = require('jsonwebtoken');
 const express = require('express');
 const app = express();
 const exphbs  = require('express-handlebars');
@@ -16,8 +19,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Add after body parser initialization!
 app.use(expressValidator());
 
+app.use(cookieParser()); // Add this after you initialize express.
+
 require('./controllers/posts.js')(app);
 require('./controllers/comments.js')(app);
+require('./controllers/auth.js')(app);
 require('./data/reddit-db');
 
 
