@@ -7,11 +7,6 @@ module.exports = (app) => {
     app.get("/sign-up", (req, res) => {
         res.render("sign-up");
     })
-
-    // LOGIN FORM
-    app.get('/login', (req, res) => {
-        res.render('login');
-    });
     
     app.post("/sign-up", (req, res) => {
         const user = new User(req.body);
@@ -29,6 +24,12 @@ module.exports = (app) => {
             .catch(err => {
                 return res.status(400).send({ err: err });
             });
+            
+    // LOGIN FORM
+    app.get('/login', (req, res) => {
+        res.render('login');
+    });
+    
 
     // LOGIN
     app.post("/login", (req, res) => {
