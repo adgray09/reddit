@@ -52,18 +52,22 @@ app.get("/n/:subreddit", function (req, res) {
           console.log(err);
       });
 });
+
 app.get('/posts/new', (req,res) => res.render('post-new'));
 
 
-app.get("/posts/:id", function(req, res) {
-  // LOOK UP THE POST
-  Post.findById(req.params.id).lean().populate('comments')
-    .then(post => {
-      res.render("posts-show", { post });
-    })
-    .catch(err => {
-      console.log(err.message);
-    });
+// SHOW
+app.get("/posts/:id", function (req, res) {
+   var currentUser = req.user;
+   // LOOK UP THE POST
+
+  Post.findById(req.params.id).populate({path:'comments', populate: {path: 'author'}}).populate('author').lean()
+       .then(post => {
+          res.render("posts-show", { post, currentUser });  
+      })
+       .catch(err => {
+          console.log(err.message);
+      });
 });
 
 app.get("/posts/:id", function (req, res) {
