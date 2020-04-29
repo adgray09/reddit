@@ -10,13 +10,12 @@ const agent = chai.request.agent(server);
 const User = require("../models/user");
 
 describe("User", function() {
-
-
+  // TESTS WILL GO HERE.
     it("should not be able to login if they have not registered", function(done) {
-        agent.post("/login", { email: "wrong@wrong.com", password: "nope" }).end(function(err, res) {
-            res.status.should.be.equal(401);
-            done();
-        });
+    agent.post("/login", { email: "wrong@wrong.com", password: "nope" }).end(function(err, res) {
+        res.status.should.be.equal(401);
+        done();
+    });
     });
 
     // signup
@@ -33,6 +32,7 @@ describe("User", function() {
             });
         });
     });
-});after(function () {
-    agent.close()
+    after(function () {
+        agent.close()
+    });
 });
