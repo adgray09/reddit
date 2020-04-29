@@ -24,7 +24,8 @@ module.exports = (app) => {
             .catch(err => {
                 return res.status(400).send({ err: err });
             });
-            
+    })
+
     // LOGIN FORM
     app.get('/login', (req, res) => {
         res.render('login');
@@ -61,10 +62,9 @@ module.exports = (app) => {
             console.log(err);
         });
     });
-})
     // LOGOUT
     app.get('/logout', (req, res) => {
         res.clearCookie('nToken');
         res.redirect('/');
     });
-};
+}
