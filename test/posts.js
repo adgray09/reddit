@@ -26,8 +26,7 @@ describe('Posts', function() {
   const user = {
     username: 'poststest',
     password: 'testposts'
-  };
-
+};
 before(function (done) {
     agent
       .post('/sign-up')
@@ -43,10 +42,8 @@ before(function (done) {
 
   it('Should create with valid attributes at POST /posts/new', function(done) {
     // Checks how many posts there are now
-    Post.estimatedDocumentCount()
-      .then(function (initialDocCount) {
-          chai
-              .request(app)
+    Post.estimatedDocumentCount().then(function (initialDocCount) {
+          chai.request(app)
               .post("/posts/new")
               // This line fakes a form post,
               // since we're not actually filling out a form
@@ -61,18 +58,18 @@ before(function (done) {
                           // Check that the database has one more post in it
                           expect(newDocCount).to.be.equal(initialDocCount + 1)
                           done();
-                      })
-                      .catch(function (err) {
-                          done(err);
+                      }).catch(function (err) {
+                        done(err);
                       });
               })
-                .catch(function (err) {
-                    done(err);
+              .catch(function (err) {
+                done(err);
               });
       })
       .catch(function (err) {
-          done(err);
+        done(err);
       });
+      done()
   });
   after(function (done) {
     Post.findOneAndDelete(newPost)
