@@ -41,7 +41,8 @@ module.exports = (app) => {
         .then(user => {
             if (!user) {
             // User not found
-            return res.status(401).send({ message: "Wrong Username or Password" });
+                console.log("username", username)
+                return res.status(401).send({ message: "Wrong Username or Password" });
             }
             // Check the password
             user.comparePassword(password, (err, isMatch) => {

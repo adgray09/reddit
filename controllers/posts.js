@@ -53,7 +53,10 @@ app.get("/n/:subreddit", function (req, res) {
       });
 });
 
-app.get('/posts/new', (req,res) => res.render('post-new'));
+app.get('/posts/new', (req,res) => {
+  var currentUser = req.user;
+  res.render('post-new', {currentUser})
+})
 
 
 app.get("/n/:subreddit", function (req, res) {
