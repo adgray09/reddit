@@ -30,10 +30,9 @@ module.exports = app => {
         Post.findById(req.params.postId).lean()
             .then(post => {
                 // FIND THE CHILD COMMENT
-                console.log(post)
                 Promise.all([
                     reply.save(),
-                    Comment.findById(req.params.commentId).lean(),
+                    Comment.findById(req.params.commentId),
                 ])
                     .then(([reply, comment]) => {
                         // ADD THE REPLY
