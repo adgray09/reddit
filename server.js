@@ -34,6 +34,7 @@ var checkAuth = (req, res, next) => {
   next();
 };
 app.use(checkAuth);
+app.use(express.static('public'));
 
 require('./controllers/posts.js')(app);
 require('./controllers/comments.js')(app);
